@@ -79,8 +79,8 @@ public struct StubResponse: HTTPStubResponse, Equatable {
   /// - Parameter statusCode: The statusCode to use when stubbing
   public init(statusCode: Int) {
     self.statusCode = statusCode
-    body = "".data(using: .utf8)!
     headers = [:]
+    body = nil
     shouldFail = false
     error = nil
   }

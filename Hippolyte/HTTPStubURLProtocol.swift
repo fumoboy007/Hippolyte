@@ -53,10 +53,11 @@ final class HTTPStubURLProtocol: URLProtocol {
 		
         client?.urlProtocol(self, wasRedirectedTo: redirect, redirectResponse: response!)
       }
-		
-      let body = stubbedResponse.body
+
       client?.urlProtocol(self, didReceive: response!, cacheStoragePolicy: .notAllowed)
-      client?.urlProtocol(self, didLoad: body!)
+      if let body = stubbedResponse.body {
+         client?.urlProtocol(self, didLoad: body)
+      }
       client?.urlProtocolDidFinishLoading(self)
     }
   }
